@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace homework.Service
 {
-    internal class BooksService
+    public class BooksService
     {
+
     }
 }
