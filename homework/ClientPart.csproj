@@ -80,6 +80,7 @@
     <Compile Include="Commands\DeliveriesCommand.cs" />
     <Compile Include="Commands\PublishHouseCommand.cs" />
     <Compile Include="Commands\PurchasesCommand.cs" />
+    <Compile Include="Service\BooksService.cs" />
     <Compile Include="ViewModel\BooksViewModel.cs" />
     <Compile Include="ViewModel\DeliveriesViewModel.cs" />
     <Compile Include="ViewModel\PublishHouseViewModel.cs" />
@@ -201,9 +202,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
