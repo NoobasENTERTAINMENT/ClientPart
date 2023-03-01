@@ -7,22 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace homework.Database
+namespace homework.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Publishing_house
+    public partial class Author
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Publishing_house()
+        public Author()
         {
             this.Books = new HashSet<Book>();
         }
     
-        public int Code_publish { get; set; }
-        public string Publish { get; set; }
-        public string City { get; set; }
+        public int Code_author { get; set; }
+        public string Name_author { get; set; }
+        public Nullable<System.DateTime> Birthday { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Book> Books { get; set; }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace homework.Database
+namespace homework.Model
 {
     using System;
     using System.Collections.Generic;
