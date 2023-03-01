@@ -1,19 +1,59 @@
 ﻿<Window
     x:Class="homework.MainWindow"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    ResizeMode="NoResize"
+    MouseDown="Window_MouseDown"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:viewmodel="clr-namespace:homework.ViewModel"
+    xmlns:viewmodel="clr-namespace:homework.ViewModel" xmlns:view="clr-namespace:homework.View"
     Title="Client Part"
     Width="900"
+    Background="Transparent"
+    AllowsTransparency="True"
     Height="500">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="51*"/>
-            <RowDefinition Height="433*"/>
-        </Grid.RowDefinitions>
-        <Menu>
-            
-        </Menu>
-    </Grid>
+    <Border Background="White" CornerRadius="10">
+        <Grid>
+            <Grid.Resources>
+                <DataTemplate DataType="{x:Type viewmodel:AuthorsViewModel}">
+                    <view:AuthorsView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodel:BooksViewModel}">
+                    <view:BooksView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodel:DeliveriesViewModel}">
+                    <view:DeliveriesView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodel:PublishHouseViewModel}">
+                    <view:PublishHouseView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodel:PurchasesViewModel}">
+                    <view:PurchasesView/>
+                </DataTemplate>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="51*"/>
+                <RowDefinition Height="433*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Click="Button_Click"
+                Style="{StaticResource MaterialDesignIconButton}">
+                <materialDesign:PackIcon Kind="Close"
+                                     Width="25"
+                                     Height="25"/>
+            </Button>
+            <Menu HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+                <MenuItem Command="{Binding BooksCommand}" Header="Книги"/>
+                <MenuItem Command="{Binding AuthorsCommand}" Header="Авторы"/>
+                <MenuItem Command="{Binding DeliveriesCommand}" Header="Поставки"/>
+                <MenuItem Command="{Binding PublishHouseCommand}" Header="Издатель"/>
+                <MenuItem Command="{Binding PurchasesCommand}" Header="Покупки"/>
+            </Menu>
+            <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}"/>
+        </Grid>
+    </Border>
 </Window>

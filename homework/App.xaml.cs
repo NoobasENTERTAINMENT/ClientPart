@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using homework.Services;
 using homework.ViewModel;
 
 namespace homework
@@ -14,23 +15,24 @@ namespace homework
     /// </summary>
     public partial class App : Application
     {
-        public DisplayRootRegistry displayRootRegistry = new DisplayRootRegistry();
-        GlobalViewModel globalViewModel;
+        private NavigationStore _navigationStore;
 
         public App()
         {
-            displayRootRegistry.RegisterWindowType<GlobalViewModel, MainWindow>();
+            _navigationStore= new NavigationStore();
         }
 
-        protected override async void OnStartup(StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
+            _navigationStore.CurrentViewModel = new BooksViewModel();
+
+            MainWindow = new MainWindow()
+            {
+                DataContext = new MainViewModel(_navigationStore)
+            };
+            MainWindow.Show();
+
             base.OnStartup(e);
-
-            globalViewModel = new GlobalViewModel();
-
-            await displayRootRegistry.ShowModalPresentation(globalViewModel);
-
-            Shutdown();
         }
     }
 }
