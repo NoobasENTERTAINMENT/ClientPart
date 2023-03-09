@@ -19,7 +19,7 @@
           </Key>
           <Property Name="Code_book" Type="int" Nullable="false" />
           <Property Name="Title_book" Type="char" MaxLength="30" />
-          <Property Name="Code_autor" Type="int" />
+          <Property Name="Code_author" Type="int" />
           <Property Name="Pages" Type="int" />
           <Property Name="Code_publish" Type="int" />
         </EntityType>
@@ -54,7 +54,7 @@
           <Property Name="Amount" Type="int" />
           <Property Name="Code_purchase" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Books_Authors">
+        <Association Name="FK_Books_Authors1">
           <End Role="Authors" Type="Self.Authors" Multiplicity="0..1" />
           <End Role="Books" Type="Self.Books" Multiplicity="*" />
           <ReferentialConstraint>
@@ -62,7 +62,7 @@
               <PropertyRef Name="Code_author" />
             </Principal>
             <Dependent Role="Books">
-              <PropertyRef Name="Code_autor" />
+              <PropertyRef Name="Code_author" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -108,7 +108,7 @@
           <EntitySet Name="Deliveries" EntityType="Self.Deliveries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Publishing_house" EntityType="Self.Publishing_house" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Purchases" EntityType="Self.Purchases" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Books_Authors" Association="Self.FK_Books_Authors">
+          <AssociationSet Name="FK_Books_Authors1" Association="Self.FK_Books_Authors1">
             <End Role="Authors" EntitySet="Authors" />
             <End Role="Books" EntitySet="Books" />
           </AssociationSet>
@@ -137,7 +137,7 @@
           <Property Name="Code_author" Type="Int32" Nullable="false" />
           <Property Name="Name_author" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Birthday" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Books" Relationship="Self.FK_Books_Authors" FromRole="Authors" ToRole="Books" />
+          <NavigationProperty Name="Books" Relationship="Self.FK_Books_Authors1" FromRole="Authors" ToRole="Books" />
         </EntityType>
         <EntityType Name="Book">
           <Key>
@@ -146,7 +146,7 @@
           <Property Name="Code_book" Type="Int32" Nullable="false" />
           <Property Name="Title_book" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
           <Property Name="Pages" Type="Int32" />
-          <NavigationProperty Name="Author" Relationship="Self.FK_Books_Authors" FromRole="Books" ToRole="Authors" />
+          <NavigationProperty Name="Author" Relationship="Self.FK_Books_Authors1" FromRole="Books" ToRole="Authors" />
           <NavigationProperty Name="Publishing_house" Relationship="Self.FK_Books_Publishing_house" FromRole="Books" ToRole="Publishing_house" />
           <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchases_Books1" FromRole="Books" ToRole="Purchases" />
         </EntityType>
@@ -183,7 +183,7 @@
           <NavigationProperty Name="Book" Relationship="Self.FK_Purchases_Books1" FromRole="Purchases" ToRole="Books" />
           <NavigationProperty Name="Delivery" Relationship="Self.FK_Purchases_Deliveries" FromRole="Purchases" ToRole="Deliveries" />
         </EntityType>
-        <Association Name="FK_Books_Authors">
+        <Association Name="FK_Books_Authors1">
           <End Role="Authors" Type="Self.Author" Multiplicity="0..1" />
           <End Role="Books" Type="Self.Book" Multiplicity="*" />
         </Association>
@@ -205,7 +205,7 @@
           <EntitySet Name="Deliveries" EntityType="Self.Delivery" />
           <EntitySet Name="Publishing_house" EntityType="Self.Publishing_house" />
           <EntitySet Name="Purchases" EntityType="Self.Purchase" />
-          <AssociationSet Name="FK_Books_Authors" Association="Self.FK_Books_Authors">
+          <AssociationSet Name="FK_Books_Authors1" Association="Self.FK_Books_Authors1">
             <End Role="Authors" EntitySet="Authors" />
             <End Role="Books" EntitySet="Books" />
           </AssociationSet>
@@ -278,14 +278,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="FK_Books_Authors" TypeName="PonomarevSuprunDBModel.FK_Books_Authors" StoreEntitySet="Books">
+          <AssociationSetMapping Name="FK_Books_Authors1" TypeName="PonomarevSuprunDBModel.FK_Books_Authors1" StoreEntitySet="Books">
             <EndProperty Name="Authors">
-              <ScalarProperty Name="Code_author" ColumnName="Code_autor" />
+              <ScalarProperty Name="Code_author" ColumnName="Code_author" />
             </EndProperty>
             <EndProperty Name="Books">
               <ScalarProperty Name="Code_book" ColumnName="Code_book" />
             </EndProperty>
-            <Condition IsNull="false" ColumnName="Code_autor" />
+            <Condition IsNull="false" ColumnName="Code_author" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="FK_Books_Publishing_house" TypeName="PonomarevSuprunDBModel.FK_Books_Publishing_house" StoreEntitySet="Books">
             <EndProperty Name="Publishing_house">

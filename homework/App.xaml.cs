@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using homework.Core;
+using homework.Model;
 using homework.Services;
 using homework.ViewModel;
 
@@ -20,6 +22,7 @@ namespace homework
         public App()
         {
             _navigationStore= new NavigationStore();
+            Database.DB = new PonomarevSuprunDBEntities();
         }
 
         protected override void OnStartup(StartupEventArgs e)

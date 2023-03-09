@@ -1,4 +1,5 @@
-﻿using homework.Model;
+﻿using homework.Core;
+using homework.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,8 +11,8 @@ namespace homework.ViewModel
 {
     public class BooksViewModel : ViewModelBase
     {
-        private ObservableCollection<Book> _booksCollection;
-        public ObservableCollection<Book> BooksCollection
+        private List<Book> _booksCollection = Database.DB.Books.OrderBy(x => x.Code_book).ToList();
+        public List<Book> BooksCollection
         {
             get { return _booksCollection; }
             set

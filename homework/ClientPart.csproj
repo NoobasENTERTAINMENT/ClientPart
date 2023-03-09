@@ -80,37 +80,7 @@
     <Compile Include="Commands\DeliveriesCommand.cs" />
     <Compile Include="Commands\PublishHouseCommand.cs" />
     <Compile Include="Commands\PurchasesCommand.cs" />
-    <Compile Include="Service\BooksService.cs" />
-    <Compile Include="ViewModel\BooksViewModel.cs" />
-    <Compile Include="ViewModel\DeliveriesViewModel.cs" />
-    <Compile Include="ViewModel\PublishHouseViewModel.cs" />
-    <Compile Include="ViewModel\PurchasesViewModel.cs" />
-    <Compile Include="View\PublishHouseView.xaml.cs">
-      <DependentUpon>PublishHouseView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PurchasesView.xaml.cs">
-      <DependentUpon>PurchasesView.xaml</DependentUpon>
-    </Compile>
-    <Page Include="View\AuthorsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\BooksView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\DeliveriesView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Core\Database.cs" />
     <Compile Include="Model\Author.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -140,6 +110,36 @@
     </Compile>
     <Compile Include="Model\Purchase.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\BooksViewModel.cs" />
+    <Compile Include="ViewModel\DeliveriesViewModel.cs" />
+    <Compile Include="ViewModel\PublishHouseViewModel.cs" />
+    <Compile Include="ViewModel\PurchasesViewModel.cs" />
+    <Compile Include="View\PublishHouseView.xaml.cs">
+      <DependentUpon>PublishHouseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PurchasesView.xaml.cs">
+      <DependentUpon>PurchasesView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\AuthorsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BooksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DeliveriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Store\NavigationStore.cs" />
     <Compile Include="ViewModel\AuthorsViewModel.cs" />
@@ -204,19 +204,19 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.7.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.7.1\build\MaterialDesignThemes.targets')" />

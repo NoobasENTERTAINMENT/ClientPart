@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bf61ac750ad34511b00c1954e71a81c3" Name="Diagram1">
+      <Diagram DiagramId="8fa971ffd12d4a59b9d865aba12738cc" Name="Diagram1">
         <EntityTypeShape EntityType="PonomarevSuprunDBModel.Author" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PonomarevSuprunDBModel.Book" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="PonomarevSuprunDBModel.Delivery" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="PonomarevSuprunDBModel.Publishing_house" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PonomarevSuprunDBModel.Purchase" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="PonomarevSuprunDBModel.FK_Books_Authors" ManuallyRouted="false" />
+        <AssociationConnector Association="PonomarevSuprunDBModel.FK_Books_Authors1" ManuallyRouted="false" />
         <AssociationConnector Association="PonomarevSuprunDBModel.FK_Books_Publishing_house" ManuallyRouted="false" />
         <AssociationConnector Association="PonomarevSuprunDBModel.FK_Purchases_Books1" ManuallyRouted="false" />
         <AssociationConnector Association="PonomarevSuprunDBModel.FK_Purchases_Deliveries" ManuallyRouted="false" />
