@@ -80,8 +80,10 @@
             VerticalAlignment="Center"
             Orientation="Horizontal">
             <ComboBox
+                x:Name="ValuesCB"
                 Grid.Row="1"
                 Width="200"
+                SelectedIndex="0"
                 VerticalAlignment="Center"
                 materialDesign:HintAssist.Hint="Поле для выборки"
                 FontSize="15">
@@ -89,8 +91,12 @@
                     <SolidColorBrush x:Key="MaterialDesignPaper" Color="White" />
                 </ComboBox.Resources>
                 <ComboBoxItem Content="Название" />
+                <ComboBoxItem Content="Автор" />
+                <ComboBoxItem Content="Количество страниц" />
+                <ComboBoxItem Content="Издатель" />
             </ComboBox>
             <TextBox
+                Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
                 Grid.Row="1"
                 Width="120"
                 Margin="30,0,0,0"
@@ -98,9 +104,18 @@
                 materialDesign:HintAssist.Hint="Значение"
                 FontSize="15" />
             <Button
+                Command="{Binding BooksSubmitCommand}"
+                CommandParameter="{Binding ElementName=ValuesCB, Path=Text}"
                 Margin="30,0,0,0"
                 VerticalAlignment="Center"
                 Content="ОК"
+                Style="{StaticResource MaterialDesignFlatButton}" />
+            <Button
+                Command="{Binding BooksSubmitCommand}"
+                CommandParameter="Cancel"
+                Margin="30,0,0,0"
+                VerticalAlignment="Center"
+                Content="Отмена"
                 Style="{StaticResource MaterialDesignFlatButton}" />
         </StackPanel>
     </Grid>

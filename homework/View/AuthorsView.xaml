@@ -5,9 +5,118 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:homework.View"
       mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid Background="White">
-        <TextBlock Text="AUTHORS" Foreground="Black" FontSize="30"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="193*" />
+            <RowDefinition Height="32*" />
+        </Grid.RowDefinitions>
+        <DataGrid
+            Grid.Row="0"
+            Margin="5"
+            AutoGenerateColumns="False"
+            Background="White"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserReorderColumns="False"
+            CanUserResizeColumns="False"
+            CanUserResizeRows="False"
+            CanUserSortColumns="False"
+            FontSize="20"
+            GridLinesVisibility="Horizontal"
+            IsReadOnly="True"
+            ItemsSource="{Binding AuthorsCollection, UpdateSourceTrigger=PropertyChanged}"
+            RowBackground="Transparent"
+            ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            SelectionMode="Single">
+
+            <DataGrid.Resources>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="IsHitTestVisible" Value="False" />
+                </Style>
+
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Width" Value="auto" />
+                    <Setter Property="Height" Value="40" />
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="auto"
+                    Binding="{Binding Code_author}"
+                    FontSize="15"
+                    Header="Код" />
+                <DataGridTextColumn
+                    Width="auto"
+                    Binding="{Binding Name_author}"
+                    FontSize="15"
+                    Header="Имя автора" />
+                <DataGridTextColumn
+                    Width="auto"
+                    Binding="{Binding Birthday, StringFormat=d}"
+                    FontSize="15"
+                    Header="Год рождения" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel
+            Grid.Row="1"
+            Margin="10,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <ComboBox
+                x:Name="ValuesCB"
+                Grid.Row="1"
+                SelectedIndex="{Binding ComboBoxSelectedIndex, UpdateSourceTrigger=PropertyChanged}"
+                Width="200"
+                VerticalAlignment="Center"
+                materialDesign:HintAssist.Hint="Поле для выборки"
+                FontSize="15">
+                <ComboBox.Resources>
+                    <SolidColorBrush x:Key="MaterialDesignPaper" Color="White" />
+                </ComboBox.Resources>
+                <ComboBoxItem Content="Имя автора" />
+                <ComboBoxItem Content="Год рождения" />
+            </ComboBox>
+            <Grid>
+                <TextBox
+                    Visibility="{Binding TextBoxVisibility, UpdateSourceTrigger=PropertyChanged}"
+                    Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
+                    Grid.Row="1"
+                    Width="120"
+                    Margin="30,0,0,0"
+                    VerticalAlignment="Center"
+                    materialDesign:HintAssist.Hint="Значение"
+                    FontSize="15" />
+                <DatePicker
+                    SelectedDate="{Binding ValueDate, UpdateSourceTrigger=PropertyChanged}"
+                    Visibility="{Binding DatePickerVisibility, UpdateSourceTrigger=PropertyChanged}"
+                    Grid.Row="1"
+                    Width="120"
+                    Margin="30,0,0,0"
+                    VerticalAlignment="Center"
+                    materialDesign:HintAssist.Hint="Значение"
+                    FontSize="15" >
+                </DatePicker>
+            </Grid>
+            <Button
+                Command="{Binding AuthorsSubmitCommand}"
+                CommandParameter="{Binding ElementName=ValuesCB, Path=Text}"
+                Margin="30,0,0,0"
+                VerticalAlignment="Center"
+                Content="ОК"
+                Style="{StaticResource MaterialDesignFlatButton}" />
+            <Button
+                Command="{Binding AuthorsSubmitCommand}"
+                CommandParameter="Cancel"
+                Margin="30,0,0,0"
+                VerticalAlignment="Center"
+                Content="Отмена"
+                Style="{StaticResource MaterialDesignFlatButton}" />
+        </StackPanel>
     </Grid>
 </UserControl>
