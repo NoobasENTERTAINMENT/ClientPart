@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace homework.Commands
 {
@@ -18,25 +19,35 @@ namespace homework.Commands
         }
         public override void Execute(object parameter)
         {
-            switch(parameter)
+            try
             {
-                case "Название":
-                    _viewModel.BooksCollection = Database.DB.Books.Where(x => x.Title_book.Contains(_viewModel.Value)).ToList();
-                    break;
-                case "Автор":
-                    _viewModel.BooksCollection = Database.DB.Books.Where(x => x.Author.Name_author.Contains(_viewModel.Value)).ToList();
-                    break;
-                case "Количество страниц":
-                    int pages = Convert.ToInt32(_viewModel.Value);
-                    _viewModel.BooksCollection = Database.DB.Books.Where(x => x.Pages == pages).ToList();
-                    break;
-                case "Издатель":
-                    _viewModel.BooksCollection = Database.DB.Books.Where(x => x.Publishing_house.Publish.Contains(_viewModel.Value)).ToList();
-                    break;
-                case "Cancel":
-                    _viewModel.BooksCollection = Database.DB.Books.OrderBy(x => x.Code_book).ToList();
-                    break;
+                switch (parameter)
+                {
+                    case "Название":
+                        _viewModel.BooksCollection = Database.DB.Books.Where(x => x.Title_book.Contains(_viewModel.Value)).ToList();
+                        break;
+                    case "Автор":
+                        _viewModel.BooksCollection = Database.DB.Books.Where(x => x.Author.Name_author.Contains(_viewModel.Value)).ToList();
+                        break;
+                    case "Количество страниц":
+                        int pages = Convert.ToInt32(_viewModel.Value);
+                        _viewModel.BooksCollection = Database.DB.Books.Where(x => x.Pages == pages).ToList();
+                        break;
+                    case "Издатель":
+                        _viewModel.BooksCollection = Database.DB.Books.Where(x => x.Publishing_house.Publish.Contains(_viewModel.Value)).ToList();
+                        break;
+                    case "Cancel":
+                        _viewModel.BooksCollection = Database.DB.Books.OrderBy(x => x.Code_book).ToList();
+                        _viewModel.Value = "";
+                        break;
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка входных данных", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            
         }
     }
 }

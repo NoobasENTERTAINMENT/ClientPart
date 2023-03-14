@@ -9,10 +9,10 @@ using System.Windows;
 
 namespace homework.Commands.SubmitCommands
 {
-    public class AuthorsSubmitCommand : CommandBase
+    public class PublishingHouseSubmitCommand : CommandBase
     {
-        AuthorsViewModel _viewModel;
-        public AuthorsSubmitCommand(AuthorsViewModel viewModel)
+        PublishHouseViewModel _viewModel;
+        public PublishingHouseSubmitCommand(PublishHouseViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -22,16 +22,15 @@ namespace homework.Commands.SubmitCommands
             {
                 switch (parameter)
                 {
-                    case "Имя автора":
-                        _viewModel.AuthorsCollection = Database.DB.Authors.Where(x => x.Name_author.Contains(_viewModel.Value)).ToList();
+                    case "Издатель":
+                        _viewModel.PublishHouseCollection = Database.DB.Publishing_house.Where(x => x.Publish.Contains(_viewModel.Value)).ToList();
                         break;
-                    case "Год рождения":
-                        _viewModel.AuthorsCollection = Database.DB.Authors.Where(x => x.Birthday == _viewModel.ValueDate).ToList();
+                    case "Город":
+                        _viewModel.PublishHouseCollection = Database.DB.Publishing_house.Where(x => x.City.Contains(_viewModel.Value)).ToList();
                         break;
                     case "Cancel":
-                        _viewModel.AuthorsCollection = Database.DB.Authors.OrderBy(x => x.Code_author).ToList();
+                        _viewModel.PublishHouseCollection = Database.DB.Publishing_house.OrderBy(x => x.Code_publish).ToList();
                         _viewModel.Value = "";
-                        _viewModel.ValueDate = DateTime.Now;
                         break;
                 }
             }
@@ -40,7 +39,7 @@ namespace homework.Commands.SubmitCommands
                 MessageBox.Show("Ошибка входных данных", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-           
+
         }
     }
 }

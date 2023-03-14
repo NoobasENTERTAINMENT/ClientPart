@@ -82,6 +82,9 @@
     <Compile Include="Commands\PurchasesCommand.cs" />
     <Compile Include="Commands\SubmitCommands\AuthorsSubmitCommand.cs" />
     <Compile Include="Commands\SubmitCommands\BooksSubmitCommand.cs" />
+    <Compile Include="Commands\SubmitCommands\DeliveriesSubmitCommand.cs" />
+    <Compile Include="Commands\SubmitCommands\PublishingHouseSubmitCommand.cs" />
+    <Compile Include="Commands\SubmitCommands\PurchasesSubmitCommand.cs" />
     <Compile Include="Core\Database.cs" />
     <Compile Include="Model\Author.cs">
       <DependentUpon>Model1.tt</DependentUpon>

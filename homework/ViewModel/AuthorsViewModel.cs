@@ -39,7 +39,7 @@ namespace homework.ViewModel
                 OnPropertyChanged();
             }
         }
-        private DateTime _valueDate;
+        private DateTime _valueDate = DateTime.Now;
         public DateTime ValueDate
         {
             get { return _valueDate; }
