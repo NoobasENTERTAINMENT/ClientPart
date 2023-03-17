@@ -8,6 +8,7 @@ using System.Windows;
 using homework.Core;
 using homework.Model;
 using homework.Services;
+using homework.View;
 using homework.ViewModel;
 
 namespace homework
@@ -28,10 +29,11 @@ namespace homework
         protected override void OnStartup(StartupEventArgs e)
         {
             _navigationStore.CurrentViewModel = new BooksViewModel();
+            _navigationStore.CurrentGeneralViewModel = new LoginViewModel();
 
-            MainWindow = new MainWindow()
+            MainWindow = new GeneralView()
             {
-                DataContext = new MainViewModel(_navigationStore)
+                DataContext = new GeneralViewModel(_navigationStore)
             };
             MainWindow.Show();
 

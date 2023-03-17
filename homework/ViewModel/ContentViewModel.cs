@@ -7,13 +7,12 @@ using System.Windows.Input;
 
 namespace homework.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class ContentViewModel : ViewModelBase
     {
         private NavigationStore _navigationStore;
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
-
         
-        public MainViewModel(NavigationStore navigationStore)
+        public ContentViewModel(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
             _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;

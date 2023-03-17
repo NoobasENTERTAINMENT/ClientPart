@@ -19,6 +19,16 @@ namespace homework.Services
 				OnCurrentViewModelChanged();
 			}
 		}
+        private ViewModelBase _currentGeneralViewModel;
+        public ViewModelBase CurrentGeneralViewModel
+        {
+            get { return _currentGeneralViewModel; }
+            set
+            {
+                _currentGeneralViewModel = value;
+                OnCurrentViewModelChanged();
+            }
+        }
 
         private void OnCurrentViewModelChanged()
         {
