@@ -230,6 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Profile-PNG-Clipart.png" />
+    <Resource Include="Images\bg.jpg" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
