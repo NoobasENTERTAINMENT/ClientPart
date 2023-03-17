@@ -29,7 +29,7 @@ namespace homework
         protected override void OnStartup(StartupEventArgs e)
         {
             _navigationStore.CurrentViewModel = new BooksViewModel();
-            _navigationStore.CurrentGeneralViewModel = new LoginViewModel();
+            _navigationStore.CurrentGeneralViewModel = new LoginViewModel(_navigationStore);
 
             MainWindow = new GeneralView()
             {

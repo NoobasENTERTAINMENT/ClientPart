@@ -21,6 +21,7 @@ namespace homework.ViewModel
             DeliveriesCommand = new DeliveriesCommand(_navigationStore);
             PublishHouseCommand = new PublishHouseCommand(_navigationStore);
             PurchasesCommand = new PurchasesCommand(_navigationStore);
+            LogoutCommand = new LogoutCommand(_navigationStore);
         }
 
         private void OnCurrentViewModelChanged()
@@ -33,5 +34,6 @@ namespace homework.ViewModel
         public ICommand DeliveriesCommand { get; }
         public ICommand PublishHouseCommand { get; }
         public ICommand PurchasesCommand { get; }
+        public ICommand LogoutCommand { get; }
     }
 }

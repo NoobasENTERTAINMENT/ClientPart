@@ -78,6 +78,8 @@
     <Compile Include="Commands\BooksCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\DeliveriesCommand.cs" />
+    <Compile Include="Commands\LoginCommand.cs" />
+    <Compile Include="Commands\LogoutCommand.cs" />
     <Compile Include="Commands\PublishHouseCommand.cs" />
     <Compile Include="Commands\PurchasesCommand.cs" />
     <Compile Include="Commands\SubmitCommands\AuthorsSubmitCommand.cs" />
@@ -122,6 +124,9 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\PublishHouseViewModel.cs" />
     <Compile Include="ViewModel\PurchasesViewModel.cs" />
+    <Compile Include="View\ContentView.xaml.cs">
+      <DependentUpon>ContentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GeneralView.xaml.cs">
       <DependentUpon>GeneralView.xaml</DependentUpon>
     </Compile>
@@ -142,6 +147,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ContentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DeliveriesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -153,10 +162,6 @@
     <Page Include="View\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ContentView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -174,10 +179,6 @@
     </Compile>
     <Compile Include="View\DeliveriesView.xaml.cs">
       <DependentUpon>DeliveriesView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ContentView.xaml.cs">
-      <DependentUpon>ContentView.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Page Include="View\PublishHouseView.xaml">
       <SubType>Designer</SubType>
@@ -228,6 +229,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Profile-PNG-Clipart.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace homework
+namespace homework.View
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для ContentView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ContentView : UserControl
     {
-        public MainWindow()
+        public ContentView()
         {
             InitializeComponent();
         }
