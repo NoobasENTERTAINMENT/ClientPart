@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using homework.Core;
+using homework.Commands;
 
 namespace homework.ViewModel
 {
@@ -64,6 +65,20 @@ namespace homework.ViewModel
         public Visibility DatePickerVisibility => ComboBoxSelectedIndex == 1 ? Visibility.Visible : Visibility.Hidden;
 
         public ICommand PurchaseSubmitCommand { get; }
+        public ICommand CellEditEndingCommand => new RelayCommand<Purchase>(OnCellEditEnding);
+        private void OnCellEditEnding(Purchase e)
+        {
+            if (e is Purchase item)
+            {
+                Purchase purchaseModel = Database.DB.Purchases.FirstOrDefault(x => x.Code_purchase == e.Code_purchase);
+                if (purchaseModel != null)
+                {
+                    purchaseModel = e;
+                    Database.DB.SaveChangesAsync();
+                }
+
+            }
+        }
     }
 }
 

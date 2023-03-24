@@ -40,5 +40,19 @@ namespace homework.ViewModel
         }
 
         public ICommand PublishHouseSubmitCommand { get; }
+        public ICommand CellEditEndingCommand => new RelayCommand<Publishing_house>(OnCellEditEnding);
+        private void OnCellEditEnding(Publishing_house e)
+        {
+            if (e is Publishing_house item)
+            {
+                Publishing_house publishing_houseModel = Database.DB.Publishing_house.FirstOrDefault(x => x.Code_publish == e.Code_publish);
+                if (publishing_houseModel != null)
+                {
+                    publishing_houseModel = e;
+                    Database.DB.SaveChangesAsync();
+                }
+
+            }
+        }
     }
 }

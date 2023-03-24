@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:homework.View"
       mc:Ignorable="d" 
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      d:DesignHeight="450" d:DesignWidth="800">
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -26,16 +26,24 @@
             CanUserSortColumns="False"
             FontSize="20"
             GridLinesVisibility="Horizontal"
-            IsReadOnly="True"
+            IsReadOnly="False"
             ItemsSource="{Binding AuthorsCollection, UpdateSourceTrigger=PropertyChanged}"
             RowBackground="Transparent"
             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
             ScrollViewer.VerticalScrollBarVisibility="Hidden"
             SelectionMode="Single">
 
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="CellEditEnding">
+                    <i:InvokeCommandAction Command="{Binding CellEditEndingCommand}"
+                                           CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=SelectedItem}">
+                    </i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
             <DataGrid.Resources>
                 <Style TargetType="DataGridRow">
-                    <Setter Property="IsHitTestVisible" Value="False" />
+                    <Setter Property="IsHitTestVisible" Value="True" />
                 </Style>
 
                 <Style TargetType="DataGridCell">
@@ -47,12 +55,12 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Name_author}"
+                    Binding="{Binding Name_author, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Имя автора" />
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Birthday, StringFormat=d}"
+                    Binding="{Binding Birthday, StringFormat=d, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Год рождения" />
             </DataGrid.Columns>

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:homework.View"
+             xmlns:local="clr-namespace:homework.View" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
@@ -25,16 +25,24 @@
             CanUserSortColumns="False"
             FontSize="20"
             GridLinesVisibility="Horizontal"
-            IsReadOnly="True"
+            IsReadOnly="False"
             ItemsSource="{Binding PurchasesCollection, UpdateSourceTrigger=PropertyChanged}"
             RowBackground="Transparent"
             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
             ScrollViewer.VerticalScrollBarVisibility="Hidden"
             SelectionMode="Single">
 
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="CellEditEnding">
+                    <i:InvokeCommandAction Command="{Binding CellEditEndingCommand}"
+                                               CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=SelectedItem}">
+                    </i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            
             <DataGrid.Resources>
                 <Style TargetType="DataGridRow">
-                    <Setter Property="IsHitTestVisible" Value="False" />
+                    <Setter Property="IsHitTestVisible" Value="True" />
                 </Style>
 
                 <Style TargetType="DataGridCell">
@@ -46,27 +54,27 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Book.Title_book}"
+                    Binding="{Binding Book.Title_book, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Книга" />
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Date_order, StringFormat=d}"
+                    Binding="{Binding Date_order, StringFormat=d, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Дата заказа" />
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Delivery.Name_delivery}"
+                    Binding="{Binding Delivery.Name_delivery, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Поставщик" />
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Cost}"
+                    Binding="{Binding Cost, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Цена" />
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Amount}"
+                    Binding="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Количество" />
             </DataGrid.Columns>

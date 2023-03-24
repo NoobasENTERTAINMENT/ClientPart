@@ -66,5 +66,19 @@ namespace homework.ViewModel
         public Visibility DatePickerVisibility => ComboBoxSelectedIndex == 1 ? Visibility.Visible : Visibility.Hidden;
 
         public ICommand AuthorsSubmitCommand { get; }
+        public ICommand CellEditEndingCommand => new RelayCommand<Author>(OnCellEditEnding);
+        private void OnCellEditEnding(Author e)
+        {
+            if (e is Author item)
+            {
+                Author authorModel = Database.DB.Authors.FirstOrDefault(x => x.Code_author == e.Code_author);
+                if (authorModel != null)
+                {
+                    authorModel = e;
+                    Database.DB.SaveChangesAsync();
+                }
+
+            }
+        }
     }
 }

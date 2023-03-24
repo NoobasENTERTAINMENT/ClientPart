@@ -3,7 +3,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
@@ -24,16 +24,24 @@
             CanUserSortColumns="False"
             FontSize="20"
             GridLinesVisibility="Horizontal"
-            IsReadOnly="True"
+            IsReadOnly="False"
             ItemsSource="{Binding DeliveriesCollection, UpdateSourceTrigger=PropertyChanged}"
             RowBackground="Transparent"
             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
             ScrollViewer.VerticalScrollBarVisibility="Hidden"
             SelectionMode="Single">
-
+            
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="CellEditEnding">
+                    <i:InvokeCommandAction Command="{Binding CellEditEndingCommand}"
+                                               CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=SelectedItem}">
+                    </i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            
             <DataGrid.Resources>
                 <Style TargetType="DataGridRow">
-                    <Setter Property="IsHitTestVisible" Value="False" />
+                    <Setter Property="IsHitTestVisible" Value="True" />
                 </Style>
 
                 <Style TargetType="DataGridCell">
@@ -45,27 +53,27 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Name_delivery}"
+                    Binding="{Binding Name_delivery, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Название поставки" />
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Name_company}"
+                    Binding="{Binding Name_company, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Название компании" />
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Adress}"
+                    Binding="{Binding Adress, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Адрес" />
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Phone}"
+                    Binding="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Телефон" />
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding INN}"
+                    Binding="{Binding INN, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="ИНН" />
             </DataGrid.Columns>

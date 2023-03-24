@@ -26,7 +26,6 @@
             CanUserResizeRows="False"
             CanUserSortColumns="False"
             FontSize="20"
-            SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged}"
             GridLinesVisibility="Horizontal"
             ItemsSource="{Binding BooksCollection, UpdateSourceTrigger=PropertyChanged}"
             RowBackground="Transparent"

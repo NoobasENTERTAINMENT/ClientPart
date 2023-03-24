@@ -40,5 +40,19 @@ namespace homework.ViewModel
         }
 
         public ICommand DeliveriesSubmitCommand { get; }
+        public ICommand CellEditEndingCommand => new RelayCommand<Delivery>(OnCellEditEnding);
+        private void OnCellEditEnding(Delivery e)
+        {
+            if (e is Delivery item)
+            {
+                Delivery deliveryModel = Database.DB.Deliveries.FirstOrDefault(x => x.Code_delivery == e.Code_delivery);
+                if (deliveryModel != null)
+                {
+                    deliveryModel = e;
+                    Database.DB.SaveChangesAsync();
+                }
+
+            }
+        }
     }
 }

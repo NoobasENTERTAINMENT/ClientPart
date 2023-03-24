@@ -38,20 +38,6 @@ namespace homework.ViewModel
                 OnPropertyChanged();
             }
         }
-        private int _selectedIndex;
-
-        public int SelectedIndex
-        {
-            get 
-            { 
-                return _selectedIndex;
-            }
-            set 
-            { 
-                _selectedIndex = value;
-                OnPropertyChanged();
-            }
-        }
 
         public ICommand BooksSubmitCommand { get; }
         public ICommand CellEditEndingCommand => new RelayCommand<Book>(OnCellEditEnding);
@@ -63,7 +49,7 @@ namespace homework.ViewModel
                 if(bookModel != null)
                 {
                     bookModel = e;
-                    Database.DB.SaveChanges();
+                    Database.DB.SaveChangesAsync();
                 }
                 
             }

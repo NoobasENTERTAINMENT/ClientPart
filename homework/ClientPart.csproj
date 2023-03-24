@@ -238,7 +238,6 @@
     <Resource Include="Images\Profile-PNG-Clipart.png" />
     <Resource Include="Images\bg.jpg" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

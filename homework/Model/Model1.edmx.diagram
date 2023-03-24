@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="138e66d9fdb64269b5145ee01e086480" Name="Diagram1">
+      <Diagram DiagramId="0a65de10107d494b96ec39fde8920f4b" Name="Diagram1">
         <EntityTypeShape EntityType="PonomarevSuprunDBModel.Author" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PonomarevSuprunDBModel.Book" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="PonomarevSuprunDBModel.Delivery" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
