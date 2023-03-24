@@ -1,9 +1,11 @@
 ﻿using homework.Commands;
 using homework.Core;
 using homework.Model;
+using homework.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +38,35 @@ namespace homework.ViewModel
                 OnPropertyChanged();
             }
         }
+        private int _selectedIndex;
+
+        public int SelectedIndex
+        {
+            get 
+            { 
+                return _selectedIndex;
+            }
+            set 
+            { 
+                _selectedIndex = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ICommand BooksSubmitCommand { get; }
+        public ICommand CellEditEndingCommand => new RelayCommand<Book>(OnCellEditEnding);
+        private void OnCellEditEnding(Book e)
+        {
+            if (e is Book item)
+            {
+                Book bookModel = Database.DB.Books.FirstOrDefault(x => x.Code_book == e.Code_book);
+                if(bookModel != null)
+                {
+                    bookModel = e;
+                    Database.DB.SaveChanges();
+                }
+                
+            }
+        }
     }
 }

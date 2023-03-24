@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:homework.View"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -26,17 +26,26 @@
             CanUserResizeRows="False"
             CanUserSortColumns="False"
             FontSize="20"
+            SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged}"
             GridLinesVisibility="Horizontal"
-            IsReadOnly="True"
             ItemsSource="{Binding BooksCollection, UpdateSourceTrigger=PropertyChanged}"
             RowBackground="Transparent"
+            IsReadOnly="False"
             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
             ScrollViewer.VerticalScrollBarVisibility="Hidden"
             SelectionMode="Single">
+            
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="CellEditEnding">
+                    <i:InvokeCommandAction Command="{Binding CellEditEndingCommand}"
+                                               CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=SelectedItem}">
+                    </i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
 
             <DataGrid.Resources>
                 <Style TargetType="DataGridRow">
-                    <Setter Property="IsHitTestVisible" Value="False" />
+                    <Setter Property="IsHitTestVisible" Value="True" />
                 </Style>
 
                 <Style TargetType="DataGridCell">
@@ -48,27 +57,22 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Code_book}"
-                    FontSize="15"
-                    Header="Код" />
-                <DataGridTextColumn
-                    Width="auto"
-                    Binding="{Binding Title_book}"
+                    Binding="{Binding Title_book, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Название" />
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Author.Name_author}"
+                    Binding="{Binding Author.Name_author, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Автор" />
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Pages}"
+                    Binding="{Binding Pages, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Количество страниц" />
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Publishing_house.Publish}"
+                    Binding="{Binding Publishing_house.Publish, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="15"
                     Header="Издатель" />
             </DataGrid.Columns>

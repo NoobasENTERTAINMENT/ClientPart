@@ -30,5 +30,7 @@ namespace homework.Model
         public virtual DbSet<Delivery> Deliveries { get; set; }
         public virtual DbSet<Publishing_house> Publishing_house { get; set; }
         public virtual DbSet<Purchase> Purchases { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

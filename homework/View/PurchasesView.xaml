@@ -46,11 +46,6 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Code_purchase}"
-                    FontSize="15"
-                    Header="Код покупки" />
-                <DataGridTextColumn
-                    Width="auto"
                     Binding="{Binding Book.Title_book}"
                     FontSize="15"
                     Header="Книга" />

@@ -47,11 +47,6 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="auto"
-                    Binding="{Binding Code_author}"
-                    FontSize="15"
-                    Header="Код" />
-                <DataGridTextColumn
-                    Width="auto"
                     Binding="{Binding Name_author}"
                     FontSize="15"
                     Header="Имя автора" />

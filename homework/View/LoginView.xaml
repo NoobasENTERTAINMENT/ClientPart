@@ -61,6 +61,7 @@
                     Margin="0,25,0,5"
                     Padding="1"
                     Command="{Binding LoginCommand}"
+                    CommandParameter="{Binding ElementName=PBpassword}"
                     Content="ВХОД"
                     FontSize="17"
                     Style="{StaticResource MaterialDesignOutlinedButton}" />

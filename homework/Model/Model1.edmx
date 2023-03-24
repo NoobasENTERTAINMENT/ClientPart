@@ -18,7 +18,7 @@
             <PropertyRef Name="Code_book" />
           </Key>
           <Property Name="Code_book" Type="int" Nullable="false" />
-          <Property Name="Title_book" Type="char" MaxLength="30" />
+          <Property Name="Title_book" Type="nvarchar" MaxLength="30" />
           <Property Name="Code_author" Type="int" />
           <Property Name="Pages" Type="int" />
           <Property Name="Code_publish" Type="int" />
@@ -28,19 +28,19 @@
             <PropertyRef Name="Code_delivery" />
           </Key>
           <Property Name="Code_delivery" Type="int" Nullable="false" />
-          <Property Name="Name_delivery" Type="char" MaxLength="20" />
-          <Property Name="Name_company" Type="char" MaxLength="20" />
-          <Property Name="Adress" Type="char" MaxLength="20" />
+          <Property Name="Name_delivery" Type="nvarchar" MaxLength="30" />
+          <Property Name="Name_company" Type="nvarchar" MaxLength="30" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="30" />
           <Property Name="Phone" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="INN" Type="char" MaxLength="20" />
+          <Property Name="INN" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Publishing_house">
           <Key>
             <PropertyRef Name="Code_publish" />
           </Key>
           <Property Name="Code_publish" Type="int" Nullable="false" />
-          <Property Name="Publish" Type="char" MaxLength="20" />
-          <Property Name="City" Type="char" MaxLength="20" />
+          <Property Name="Publish" Type="nvarchar" MaxLength="30" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Purchases">
           <Key>
@@ -53,6 +53,22 @@
           <Property Name="Cost" Type="money" />
           <Property Name="Amount" Type="int" />
           <Property Name="Code_purchase" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserLogin" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Books_Authors1">
           <End Role="Authors" Type="Self.Authors" Multiplicity="0..1" />
@@ -102,12 +118,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Users_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище PonomarevSuprunDBModelContainer">
           <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Deliveries" EntityType="Self.Deliveries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Publishing_house" EntityType="Self.Publishing_house" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Purchases" EntityType="Self.Purchases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Books_Authors1" Association="Self.FK_Books_Authors1">
             <End Role="Authors" EntitySet="Authors" />
             <End Role="Books" EntitySet="Books" />
@@ -123,6 +153,10 @@
           <AssociationSet Name="FK_Purchases_Deliveries" Association="Self.FK_Purchases_Deliveries">
             <End Role="Deliveries" EntitySet="Deliveries" />
             <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -144,7 +178,7 @@
             <PropertyRef Name="Code_book" />
           </Key>
           <Property Name="Code_book" Type="Int32" Nullable="false" />
-          <Property Name="Title_book" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Title_book" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Pages" Type="Int32" />
           <NavigationProperty Name="Author" Relationship="Self.FK_Books_Authors1" FromRole="Books" ToRole="Authors" />
           <NavigationProperty Name="Publishing_house" Relationship="Self.FK_Books_Publishing_house" FromRole="Books" ToRole="Publishing_house" />
@@ -155,11 +189,11 @@
             <PropertyRef Name="Code_delivery" />
           </Key>
           <Property Name="Code_delivery" Type="Int32" Nullable="false" />
-          <Property Name="Name_delivery" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
-          <Property Name="Name_company" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
-          <Property Name="Adress" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Name_delivery" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Name_company" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Adress" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="INN" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="INN" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchases_Deliveries" FromRole="Deliveries" ToRole="Purchases" />
         </EntityType>
         <EntityType Name="Publishing_house">
@@ -167,8 +201,8 @@
             <PropertyRef Name="Code_publish" />
           </Key>
           <Property Name="Code_publish" Type="Int32" Nullable="false" />
-          <Property Name="Publish" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Publish" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Books" Relationship="Self.FK_Books_Publishing_house" FromRole="Publishing_house" ToRole="Books" />
         </EntityType>
         <EntityType Name="Purchase">
@@ -182,6 +216,23 @@
           <Property Name="Code_purchase" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Book" Relationship="Self.FK_Purchases_Books1" FromRole="Purchases" ToRole="Books" />
           <NavigationProperty Name="Delivery" Relationship="Self.FK_Purchases_Deliveries" FromRole="Purchases" ToRole="Deliveries" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Role" FromRole="Role" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Books_Authors1">
           <End Role="Authors" Type="Self.Author" Multiplicity="0..1" />
@@ -199,12 +250,18 @@
           <End Role="Deliveries" Type="Self.Delivery" Multiplicity="1" />
           <End Role="Purchases" Type="Self.Purchase" Multiplicity="*" />
         </Association>
+        <Association Name="FK_Users_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+        </Association>
         <EntityContainer Name="PonomarevSuprunDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Authors" EntityType="Self.Author" />
           <EntitySet Name="Books" EntityType="Self.Book" />
           <EntitySet Name="Deliveries" EntityType="Self.Delivery" />
           <EntitySet Name="Publishing_house" EntityType="Self.Publishing_house" />
           <EntitySet Name="Purchases" EntityType="Self.Purchase" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Books_Authors1" Association="Self.FK_Books_Authors1">
             <End Role="Authors" EntitySet="Authors" />
             <End Role="Books" EntitySet="Books" />
@@ -220,6 +277,10 @@
           <AssociationSet Name="FK_Purchases_Deliveries" Association="Self.FK_Purchases_Deliveries">
             <End Role="Deliveries" EntitySet="Deliveries" />
             <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -278,6 +339,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="PonomarevSuprunDBModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PonomarevSuprunDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <AssociationSetMapping Name="FK_Books_Authors1" TypeName="PonomarevSuprunDBModel.FK_Books_Authors1" StoreEntitySet="Books">
             <EndProperty Name="Authors">
               <ScalarProperty Name="Code_author" ColumnName="Code_author" />
@@ -310,6 +388,14 @@
             </EndProperty>
             <EndProperty Name="Purchases">
               <ScalarProperty Name="Code_purchase" ColumnName="Code_purchase" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Users_Role" TypeName="PonomarevSuprunDBModel.FK_Users_Role" StoreEntitySet="Users">
+            <EndProperty Name="Role">
+              <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="UserID" ColumnName="UserID" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

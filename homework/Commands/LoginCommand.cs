@@ -1,10 +1,14 @@
-﻿using homework.Services;
+﻿using homework.Core;
+using homework.Model;
+using homework.Services;
 using homework.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace homework.Commands
 {
@@ -19,7 +23,19 @@ namespace homework.Commands
         }
         public override void Execute(object parameter)
         {
-            _navigationStore.CurrentGeneralViewModel = new ContentViewModel(_navigationStore);
+            PasswordBox PB = parameter as PasswordBox;
+            string Password = PB.Password;
+            User userModel = Database.DB.Users.FirstOrDefault(x => x.UserLogin == _loginViewModel.Login && x.UserPassword == Password);
+            if(userModel != null)
+            {
+                _navigationStore.CurrentGeneralViewModel = new ContentViewModel(_navigationStore);
+            }
+            else
+            {
+                MessageBox.Show("Неверные данные", "Ошибка входа", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            
         }
     }
 }
