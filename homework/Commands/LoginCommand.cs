@@ -28,7 +28,14 @@ namespace homework.Commands
             User userModel = Database.DB.Users.FirstOrDefault(x => x.UserLogin == _loginViewModel.Login && x.UserPassword == Password);
             if(userModel != null)
             {
-                _navigationStore.CurrentGeneralViewModel = new ContentViewModel(_navigationStore);
+                if(userModel.Role.RoleID == 2)
+                {
+                    _navigationStore.CurrentGeneralViewModel = new ContentViewModel(_navigationStore);
+                }
+                else
+                {
+                    _navigationStore.CurrentGeneralViewModel = new AdminViewModel(_navigationStore);
+                }
             }
             else
             {

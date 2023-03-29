@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="homework.View.AdminPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:homework.View"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="218*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <DataGrid
+            x:Name="DataGridUsers"
+            Grid.Row="0"
+            AutoGenerateColumns="False"
+            Background="White"
+            ItemsSource="{Binding UsersCollection, UpdateSourceTrigger=PropertyChanged}"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserReorderColumns="False"
+            CanUserResizeColumns="False"
+            CanUserResizeRows="False"
+            CanUserSortColumns="False"
+            ColumnHeaderHeight="50"
+            Effect="{StaticResource MaterialDesignElevationShadow16}"
+            FontSize="14"
+            Foreground="Black"
+            GridLinesVisibility="Horizontal"
+            IsReadOnly="True"
+            RowBackground="Transparent"
+            SelectionMode="Single" Grid.RowSpan="2">
+
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+                <Style TargetType="DataGridCell">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Foreground" Value="#FFFF5722" />
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="BorderThickness" Value="0" />
+                        </Trigger>
+                    </Style.Triggers>
+                    <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="0,7,0,0" />
+                    <Setter Property="Width" Value="Auto" />
+                    <Setter Property="Height" Value="35" />
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                        Width="80"
+                        Binding="{Binding UserID, UpdateSourceTrigger=PropertyChanged}"
+                        FontSize="15">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Foreground="Black">ID</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn
+                        Width="140"
+                        Binding="{Binding UserLogin, UpdateSourceTrigger=PropertyChanged}"
+                        FontSize="15">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Foreground="Black">ЛОГИН</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn
+                        Width="140"
+                        Binding="{Binding UserPassword, UpdateSourceTrigger=PropertyChanged}"
+                        FontSize="15">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Foreground="Black">ПАРОЛЬ</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn
+                        Width="140"
+                        Binding="{Binding Role.RoleID, UpdateSourceTrigger=PropertyChanged}"
+                        FontSize="15">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Foreground="Black">НОМЕР РОЛИ</TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5 0 0 0">
+            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                    Content="Добавить пользователя"
+                    Foreground="Black"
+                    Command="{Binding AddUserCommand}">
+            </Button>
+            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                    Content="Удалить пользователя"
+                    Foreground="Red"
+                    Command="{Binding DeleteUserCommand}"
+                    CommandParameter="{Binding ElementName=DataGridUsers, Path=SelectedItem}">
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
