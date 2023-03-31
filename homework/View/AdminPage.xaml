@@ -86,10 +86,10 @@
 
                 <DataGridTextColumn
                         Width="140"
-                        Binding="{Binding Role.RoleID, UpdateSourceTrigger=PropertyChanged}"
+                        Binding="{Binding Role.RoleName, UpdateSourceTrigger=PropertyChanged}"
                         FontSize="15">
                     <DataGridTextColumn.Header>
-                        <TextBlock Foreground="Black">НОМЕР РОЛИ</TextBlock>
+                        <TextBlock Foreground="Black">РОЛЬ</TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
 
