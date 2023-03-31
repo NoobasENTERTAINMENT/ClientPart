@@ -19,6 +19,7 @@ namespace homework.ViewModel
             _navigationStore = navigationStore;
             DeleteUserCommand = new DeleteUserCommand(this);
             AddUserCommand = new AddUserCommand(this);
+            LogoutCommand = new LogoutCommand(_navigationStore);
         }
         private List<User> _usersCollection = Database.DB.Users.OrderBy(x => x.UserID).ToList();
         public List<User> UsersCollection
@@ -31,6 +32,7 @@ namespace homework.ViewModel
             }
         }
         public ICommand DeleteUserCommand { get; }
+        public ICommand LogoutCommand { get; }
         public ICommand AddUserCommand { get; }
     }
 }
