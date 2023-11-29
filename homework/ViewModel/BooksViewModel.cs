@@ -95,27 +95,5 @@ namespace homework.ViewModel
                 }
             }
         }
-        public ICommand ExportCommand => new RelayCommand<DataGrid>(ExportToExcel);
-        private void ExportToExcel(DataGrid e)
-        {
-            System.Data.DataTable dataTable = ConvertToDataTable<Book>(BooksCollection);
-
-            
-        }
-        public System.Data.DataTable ConvertToDataTable<T>(IList<T> data)
-        {
-            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
-            System.Data.DataTable table = new System.Data.DataTable();
-            foreach (PropertyDescriptor prop in properties)
-                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
-            foreach (T item in data)
-            {
-                DataRow row = table.NewRow();
-                foreach (PropertyDescriptor prop in properties)
-                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
-                table.Rows.Add(row);
-            }
-            return table;
-        }
     }
 }
