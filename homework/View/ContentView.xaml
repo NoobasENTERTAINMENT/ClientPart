@@ -14,19 +14,10 @@
     <Border Background="White" CornerRadius="20">
         <Grid>
             <Grid.Resources>
-                <DataTemplate DataType="{x:Type viewmodel:AuthorsViewModel}">
-                    <view:AuthorsView />
-                </DataTemplate>
                 <DataTemplate DataType="{x:Type viewmodel:BooksViewModel}">
                     <view:BooksView />
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodel:DeliveriesViewModel}">
-                    <view:DeliveriesView />
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodel:PublishHouseViewModel}">
-                    <view:PublishHouseView />
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodel:PurchasesViewModel}">
+                <DataTemplate DataType="{x:Type viewmodel:IssuancesViewModel}">
                     <view:PurchasesView />
                 </DataTemplate>
             </Grid.Resources>
@@ -48,13 +39,9 @@
                 VerticalAlignment="Center"
                 FontSize="17"
                 Foreground="#FF03000C">
-                <MenuItem Command="{Binding BooksCommand}" Header="Книги" />
-                <MenuItem Command="{Binding AuthorsCommand}" Header="Авторы" />
-                <MenuItem Command="{Binding DeliveriesCommand}" Header="Поставки" />
-                <MenuItem Command="{Binding PublishHouseCommand}" Header="Издатель" />
-                <MenuItem Command="{Binding PurchasesCommand}" Header="Покупки" />
+                <MenuItem Command="{Binding BooksCommand}" Header="Ассортимент книг" />
+                <MenuItem Command="{Binding IssuancesCommand}" Header="Выдачи" />
             </Menu>
-
             <ContentControl
                 Grid.Row="1"
                 Margin="10"

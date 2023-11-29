@@ -12,22 +12,19 @@ namespace homework.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Delivery
+    public partial class Client
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Delivery()
+        public Client()
         {
-            this.Purchases = new HashSet<Purchase>();
+            this.Issuances = new HashSet<Issuance>();
         }
     
-        public int Code_delivery { get; set; }
-        public string Name_delivery { get; set; }
-        public string Name_company { get; set; }
-        public string Adress { get; set; }
-        public Nullable<decimal> Phone { get; set; }
-        public string INN { get; set; }
+        public int ClientID { get; set; }
+        public string Name { get; set; }
+        public int Class { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Purchase> Purchases { get; set; }
+        public virtual ICollection<Issuance> Issuances { get; set; }
     }
 }

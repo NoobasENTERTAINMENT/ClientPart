@@ -1,4 +1,5 @@
 ﻿using homework.Core;
+using homework.Model;
 using homework.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -23,25 +24,33 @@ namespace homework.Commands
             {
                 switch (parameter)
                 {
-                    case "Название":
-                        _viewModel.BooksCollection = Database.DB.Books.Where(x => x.Title_book.Contains(_viewModel.Value)).ToList();
-                        break;
-                    case "Автор":
-                        _viewModel.BooksCollection = Database.DB.Books.Where(x => x.Author.Name_author.Contains(_viewModel.Value)).ToList();
-                        break;
-                    case "Количество страниц":
-                        int pages = Convert.ToInt32(_viewModel.Value);
-                        _viewModel.BooksCollection = Database.DB.Books.Where(x => x.Pages == pages).ToList();
-                        break;
-                    case "Издатель":
-                        _viewModel.BooksCollection = Database.DB.Books.Where(x => x.Publishing_house.Publish.Contains(_viewModel.Value)).ToList();
+                    case "Add":
+                        Author authorModel = new Author()
+                        {
+                            Name_author = _viewModel.Author
+                        };
+                        Book bookModel = new Book()
+                        {
+                            Title_book = _viewModel.Name,
+                            Pages = _viewModel.Pages,
+                            Author = authorModel
+                        };
+                        Database.DB.Books.Add(bookModel);
+                        Database.DB.SaveChanges();
+
+                        _viewModel.BooksCollection = Database.DB.Books.OrderBy(x => x.Code_book).ToList();
+                        _viewModel.AuthorsCollection = Database.DB.Authors.Select(e => e.Name_author).ToList();
+                        _viewModel.Author = null;
+                        _viewModel.Pages = 0;
+                        _viewModel.Name = null;
                         break;
                     case "Cancel":
-                        _viewModel.BooksCollection = Database.DB.Books.OrderBy(x => x.Code_book).ToList();
-                        _viewModel.Value = "";
+                        _viewModel.Author = null;
+                        _viewModel.Pages = 0;
+                        _viewModel.Name = null;
                         break;
                 }
-            }
+            } 
             catch (Exception)
             {
                 MessageBox.Show("Ошибка входных данных", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);

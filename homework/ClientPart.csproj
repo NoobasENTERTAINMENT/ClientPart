@@ -74,23 +74,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviors\AllowableCharactersTextBoxBehavior.cs" />
     <Compile Include="Commands\AddUserCommand.cs" />
-    <Compile Include="Commands\AuthorsCommand.cs" />
     <Compile Include="Commands\BooksCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\DeleteUserCommand.cs" />
-    <Compile Include="Commands\DeliveriesCommand.cs" />
     <Compile Include="Commands\FinallyAddUserCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\LogoutCommand.cs" />
-    <Compile Include="Commands\PublishHouseCommand.cs" />
-    <Compile Include="Commands\PurchasesCommand.cs" />
+    <Compile Include="Commands\IssuancesCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Commands\SubmitCommands\AuthorsSubmitCommand.cs" />
     <Compile Include="Commands\SubmitCommands\BooksSubmitCommand.cs" />
-    <Compile Include="Commands\SubmitCommands\DeliveriesSubmitCommand.cs" />
-    <Compile Include="Commands\SubmitCommands\PublishingHouseSubmitCommand.cs" />
-    <Compile Include="Commands\SubmitCommands\PurchasesSubmitCommand.cs" />
+    <Compile Include="Commands\SubmitCommands\IssuancesSubmitCommand.cs" />
     <Compile Include="Core\Database.cs" />
     <Compile Include="Model\Author.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -98,7 +93,10 @@
     <Compile Include="Model\Book.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Delivery.cs">
+    <Compile Include="Model\Client.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Issuance.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Model1.Context.cs">
@@ -116,13 +114,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\Publishing_house.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Purchase.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Role.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\User.cs">
@@ -131,11 +126,9 @@
     <Compile Include="ViewModel\AddUserViewModel.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\BooksViewModel.cs" />
-    <Compile Include="ViewModel\DeliveriesViewModel.cs" />
     <Compile Include="ViewModel\GeneralViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Compile Include="ViewModel\PublishHouseViewModel.cs" />
-    <Compile Include="ViewModel\PurchasesViewModel.cs" />
+    <Compile Include="ViewModel\IssuancesViewModel.cs" />
     <Compile Include="View\AddUserWindow.xaml.cs">
       <DependentUpon>AddUserWindow.xaml</DependentUpon>
     </Compile>
@@ -151,11 +144,8 @@
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PublishHouseView.xaml.cs">
-      <DependentUpon>PublishHouseView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PurchasesView.xaml.cs">
-      <DependentUpon>PurchasesView.xaml</DependentUpon>
+    <Compile Include="View\IssuancesView.xaml.cs">
+      <DependentUpon>IssuancesView.xaml</DependentUpon>
     </Compile>
     <Page Include="View\AddUserWindow.xaml">
       <SubType>Designer</SubType>
@@ -165,19 +155,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AuthorsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\BooksView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ContentView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\DeliveriesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,23 +176,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Store\NavigationStore.cs" />
-    <Compile Include="ViewModel\AuthorsViewModel.cs" />
     <Compile Include="ViewModel\ContentViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\AuthorsView.xaml.cs">
-      <DependentUpon>AuthorsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\BooksView.xaml.cs">
       <DependentUpon>BooksView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DeliveriesView.xaml.cs">
-      <DependentUpon>DeliveriesView.xaml</DependentUpon>
-    </Compile>
-    <Page Include="View\PublishHouseView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\PurchasesView.xaml">
+    <Page Include="View\IssuancesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -17,6 +17,7 @@ namespace homework.Model
         public int UserID { get; set; }
         public string UserLogin { get; set; }
         public string UserPassword { get; set; }
+        public int RoleID { get; set; }
     
         public virtual Role Role { get; set; }
     }

@@ -13,10 +13,10 @@ namespace homework.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PonomarevSuprunDBEntities : DbContext
+    public partial class BooksDBEntities1 : DbContext
     {
-        public PonomarevSuprunDBEntities()
-            : base("name=PonomarevSuprunDBEntities")
+        public BooksDBEntities1()
+            : base("name=BooksDBEntities1")
         {
         }
     
@@ -27,10 +27,10 @@ namespace homework.Model
     
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Book> Books { get; set; }
-        public virtual DbSet<Delivery> Deliveries { get; set; }
-        public virtual DbSet<Publishing_house> Publishing_house { get; set; }
-        public virtual DbSet<Purchase> Purchases { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<Issuance> Issuances { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
 }

@@ -9,6 +9,6 @@ namespace homework.Core
 {
     public static class Database
     {
-        public static PonomarevSuprunDBEntities DB;
+        public static BooksDBEntities1 DB;
     }
 }

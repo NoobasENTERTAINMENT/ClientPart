@@ -12,19 +12,15 @@ namespace homework.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Publishing_house
+    public partial class Issuance
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Publishing_house()
-        {
-            this.Books = new HashSet<Book>();
-        }
+        public int Code_issuance { get; set; }
+        public System.DateTime Date_order { get; set; }
+        public int Amount { get; set; }
+        public int Code_book { get; set; }
+        public int ClientID { get; set; }
     
-        public int Code_publish { get; set; }
-        public string Publish { get; set; }
-        public string City { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Book> Books { get; set; }
+        public virtual Book Book { get; set; }
+        public virtual Client Client { get; set; }
     }
 }

@@ -30,11 +30,44 @@ namespace homework.ViewModel
             }
         }
 
-        private string _value = string.Empty;
-        public string Value
+        private List<string> _authorsCollection = Database.DB.Authors.Select(e => e.Name_author).ToList();
+        public List<string> AuthorsCollection
         {
-            get { return _value; }
-            set { _value = value;
+            get { return _authorsCollection; }
+            set
+            {
+                _authorsCollection = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _name = string.Empty;
+        public string Name
+        {
+            get { return _name; }
+            set {_name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _author = string.Empty;
+        public string Author
+        {
+            get { return _author; }
+            set
+            {
+                _author = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _pages;
+        public int Pages
+        {
+            get { return _pages; }
+            set
+            {
+                _pages = value;
                 OnPropertyChanged();
             }
         }
@@ -51,7 +84,6 @@ namespace homework.ViewModel
                     bookModel = e;
                     Database.DB.SaveChangesAsync();
                 }
-                
             }
         }
     }

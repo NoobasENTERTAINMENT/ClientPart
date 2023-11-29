@@ -17,16 +17,16 @@ namespace homework.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Book()
         {
-            this.Purchases = new HashSet<Purchase>();
+            this.Issuances = new HashSet<Issuance>();
         }
     
         public int Code_book { get; set; }
         public string Title_book { get; set; }
-        public Nullable<int> Pages { get; set; }
+        public int Code_author { get; set; }
+        public int Pages { get; set; }
     
         public virtual Author Author { get; set; }
-        public virtual Publishing_house Publishing_house { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Purchase> Purchases { get; set; }
+        public virtual ICollection<Issuance> Issuances { get; set; }
     }
 }

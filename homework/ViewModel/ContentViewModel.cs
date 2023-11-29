@@ -16,11 +16,9 @@ namespace homework.ViewModel
         {
             _navigationStore = navigationStore;
             _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+
             BooksCommand = new BooksCommand(_navigationStore);
-            AuthorsCommand = new AuthorsCommand(_navigationStore);
-            DeliveriesCommand = new DeliveriesCommand(_navigationStore);
-            PublishHouseCommand = new PublishHouseCommand(_navigationStore);
-            PurchasesCommand = new PurchasesCommand(_navigationStore);
+            IssuancesCommand = new IssuancesCommand(_navigationStore);
             LogoutCommand = new LogoutCommand(_navigationStore);
         }
 
@@ -30,10 +28,7 @@ namespace homework.ViewModel
         }
 
         public ICommand BooksCommand { get; }
-        public ICommand AuthorsCommand { get; }
-        public ICommand DeliveriesCommand { get; }
-        public ICommand PublishHouseCommand { get; }
-        public ICommand PurchasesCommand { get; }
+        public ICommand IssuancesCommand { get; }
         public ICommand LogoutCommand { get; }
     }
 }

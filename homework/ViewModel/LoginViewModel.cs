@@ -17,7 +17,7 @@ namespace homework.ViewModel
             _navigationStore = navigationStore;
             LoginCommand = new LoginCommand(this, _navigationStore);
         }
-        private string _login;
+        private string _login = "Maria Ivanovna";
 		public string Login
 		{
 			get

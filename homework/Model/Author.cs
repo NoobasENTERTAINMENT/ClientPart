@@ -22,7 +22,6 @@ namespace homework.Model
     
         public int Code_author { get; set; }
         public string Name_author { get; set; }
-        public Nullable<System.DateTime> Birthday { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Book> Books { get; set; }

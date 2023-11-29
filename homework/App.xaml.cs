@@ -23,7 +23,7 @@ namespace homework
         public App()
         {
             _navigationStore= new NavigationStore();
-            Database.DB = new PonomarevSuprunDBEntities();
+            Database.DB = new BooksDBEntities1();
         }
 
         protected override void OnStartup(StartupEventArgs e)
