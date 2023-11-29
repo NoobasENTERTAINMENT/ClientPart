@@ -23,6 +23,19 @@ namespace homework.View
         public ContentView()
         {
             InitializeComponent();
+            BooksItem.Foreground = Brushes.OrangeRed;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            BooksItem.Foreground = Brushes.OrangeRed;
+            IssuancesItem.Foreground = Brushes.Black;
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            IssuancesItem.Foreground = Brushes.OrangeRed;
+            BooksItem.Foreground = Brushes.Black;
         }
     }
 }

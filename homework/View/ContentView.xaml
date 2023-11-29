@@ -39,8 +39,16 @@
                 VerticalAlignment="Center"
                 FontSize="17"
                 Foreground="#FF03000C">
-                <MenuItem Command="{Binding BooksCommand}" Header="Ассортимент книг" />
-                <MenuItem Command="{Binding IssuancesCommand}" Header="Выдачи" />
+                <MenuItem
+                    x:Name="BooksItem"
+                    Click="MenuItem_Click"
+                    Command="{Binding BooksCommand}"
+                    Header="Ассортимент книг" />
+                <MenuItem
+                    x:Name="IssuancesItem"
+                    Click="MenuItem_Click_1"
+                    Command="{Binding IssuancesCommand}"
+                    Header="Выдачи" />
             </Menu>
             <ContentControl
                 Grid.Row="1"
