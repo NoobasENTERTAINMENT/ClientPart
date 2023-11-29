@@ -1,5 +1,4 @@
-﻿using ClosedXML.Excel;
-using homework.Commands;
+﻿using homework.Commands;
 using homework.Core;
 using homework.Model;
 using homework.View;
@@ -101,8 +100,6 @@ namespace homework.ViewModel
         {
             System.Data.DataTable dataTable = ConvertToDataTable<Book>(BooksCollection);
 
-           SaveExcelData(BooksCollection, "Report");
-
             
         }
         public System.Data.DataTable ConvertToDataTable<T>(IList<T> data)
@@ -119,36 +116,6 @@ namespace homework.ViewModel
                 table.Rows.Add(row);
             }
             return table;
-        }
-
-        public void SaveExcelData(List<Book> Data, string FileName)
-        {
-            XLWorkbook excelworkBook = new XLWorkbook();
-            var worksheet = excelworkBook.Worksheets.Add("Лист1");
-
-            worksheet.Cell("A" + 1).Value = "Код книги";
-            worksheet.Cell("B" + 1).Value = "Название";
-            worksheet.Cell("C" + 1).Value = "Количество страниц";
-            worksheet.Cell("D" + 1).Value = "Автор";
-            worksheet.Cell("E" + 1).Value = "Издатель";
-            int row = 2;
-
-            foreach (Book data in Data)
-            {
-                worksheet.Cell("A" + row).Value = data.Code_book;
-                worksheet.Cell("B" + row).Value = data.Title_book;
-                worksheet.Cell("C" + row).Value = data.Pages;
-                worksheet.Cell("D" + row).Value = (data.Author as Author).Name_author;
-                worksheet.Cell("E" + row).Value = (data.Publishing_house as Publishing_house).Publish;
-                row++;
-            }
-
-            worksheet.Columns().AdjustToContents();
-
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Excel files (*.xlsx)|*.xlsx";
-            sfd.ShowDialog();
-            excelworkBook.SaveAs(sfd.FileName);
         }
     }
 }
